@@ -1,0 +1,58 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-0">
+            <div class="card-header">
+                <h3 class="mb-0">Register</h3>
+            </div>
+            <div class="card-body">
+                <form class="form" [formGroup] = "registerForm" (ngSubmit) = "onRegister(registerForm)" novalidate>
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input type="text" [class.is-invalid] = "userName.invalid && userName.touched" pattern ="{{nameRegex}}" formControlName="username" placeholder="----User Name----"  class="form-control rounded-0"> 
+                        <div *ngIf="userName.invalid && userName.touched">
+                            <small class="text-danger" *ngIf="userName.errors?.required">This field is required!</small>
+                            <p><small class="text-danger" *ngIf="userName.errors?.pattern">Username should only contain characters!</small></p>
+                            <p><small class="text-danger" *ngIf="userName.errors?.maxlength">Username should only be 10 characters long!</small></p>
+                            <p><small class="text-danger" *ngIf="userName.errors?.minlength">Username should contain atleast 2 charcters!</small></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Place</label>
+                        <input type="text" [class.is-invalid]="place.invalid && place.touched" pattern="{{nameRegex}}" class="form-control rounded-0" formControlName="place" placeholder="----Place----">
+                        <div *ngIf="place.invalid && place.touched">
+                            <small class="text-danger" *ngIf="place.errors?.required">This field is required!</small>
+                            <p><small class="text-danger" *ngIf="place.errors?.pattern">Enter valid place</small></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" [class.is-invalid]="email.invalid && email.touched" pattern="{{emailRegex}}" formControlName="email" placeholder="----Email----" class="form-control rounded-0">
+                        <div *ngIf="email.invalid && email.touched">
+                            <small class="text-danger" *ngIf="email.required">This field is required!</small> 
+                            <p><small class="text-danger" *ngIf="email.errors?.pattern">Enter valid Email!</small> </p>
+                    
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" [class.is-invalid] = "password.invalid && password.touched" formControlName="password" placeholder="----Password----" class="form-control rounded-0">
+                        <div *ngIf="password.invalid && password.touched">
+                            <small class="text-danger" *ngIf="password.errors?.required">This field is required!</small>
+                            <p><small class="text-danger" *ngIf="password.errors?.maxlength">Password should only be 10 characters long!</small></p>
+                            <p><small class="text-danger" *ngIf="password.errors?.minlength">Password should contain atleast 6 charchters!</small></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Phone</label>
+                        <input type="tel" [class.is-invalid] = "phone.invalid && phone.touched" pattern="{{phoneRegex}}" formControlName="phone" placeholder="----Phone---- " class="form-control rounded-0">
+                        <div *ngIf="phone.invalid && phone.touched">
+                                <small class="text-danger" *ngIf="phone.errors?.required">This field is required!</small>
+                                <small class="text-danger" *ngIf="phone.errors?.maxlength || phone.errors?.pattern">Enter valid Contact Number!</small>
+                        </div>
+                    </div>
+                    <button type="submit"  [disabled] ="!registerForm.valid" class="btn btn-primary float-right">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
