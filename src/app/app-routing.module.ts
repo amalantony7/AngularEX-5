@@ -6,6 +6,8 @@ import { EventsComponent} from  './events/events.component';
 import { SpecialComponent } from './special/special.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
+import { CarsComponent } from './cars/cars.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 
 
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path : "login" , component : LoginComponent},
   {path : "register" , component : RegisterComponent},
   {path : "events" , component : EventsComponent},
+  {path : "cars", component : CarsComponent},
+  {path : "employee" , component : EmployeeDetailsComponent},
   {path : "special" , component : SpecialComponent, canActivate : [AuthGuard]},
   {path : "**" , component: PageNotFoundComponent}
 

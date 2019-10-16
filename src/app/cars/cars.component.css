@@ -1,0 +1,51 @@
+.container{
+    left: auto;
+    right: auto;
+    width: 80%;
+}
+
+
+.color-blue{
+    background-color: rgb(52, 35, 148);
+    color: white !important;
+    
+}
+
+.color-red{
+    background-color:rgb(184, 5, 5);   
+}
+
+.color-grey{
+    background-color: grey;
+    
+}
+
+.color-white{
+    background-color : brown;
+    
+    
+}
+.color-silver{
+    background-color: silver;
+    
+}
+.color-purple{
+    
+    background-color: black;
+    color: white !important;
+    
+    
+}
+
+::ng-deep.txt-col{
+    color: white !important;
+}
+
+::ng-deep.txtd-col{
+    color: white !important;
+}
+
+.btn{
+    background-color: slategray;
+     
+}

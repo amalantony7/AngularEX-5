@@ -10,7 +10,7 @@ export class EventService {
 
   private _eventUrl = "http://localhost:3000/api/userdata";
   private _specialUrl = "http://localhost:3000/api/special";
-
+  private _carUrl = "http://localhost:3000/api/cars";
   constructor(private _http : HttpClient) { }
 
 
@@ -22,6 +22,12 @@ export class EventService {
   getspecials(){
     return this._http.get<any>(this._specialUrl)
               .pipe(catchError(this.errorHandler));
+  }
+
+
+  getCars(){
+    return this._http.get<any>(this._carUrl)
+                      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error : HttpErrorResponse){

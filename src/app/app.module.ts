@@ -15,6 +15,11 @@ import { RegisterComponent } from './register/register.component';
 import { SpecialComponent } from './special/special.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
+import { CarsComponent } from './cars/cars.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +28,18 @@ import { AuthGuard } from './auth.guard';
     EventsComponent,
     RegisterComponent,
     SpecialComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CarsComponent,
+    EmployeeListComponent,
+    EmployeeDetailsComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [AuthService, AuthGuard, EventService, {
     provide : HTTP_INTERCEPTORS,

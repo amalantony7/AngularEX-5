@@ -11,6 +11,7 @@ export class AuthService {
 
   private _regUrl = "http://localhost:3000/api/register";
   private _logUrl = "http://localhost:3000/api/login";
+  private _getEmpUrl= "http://localhost:3000/api/employees";
   constructor(private _http : HttpClient, private _router : Router) { }
 
   registerData(user){
@@ -22,6 +23,12 @@ export class AuthService {
     return this._http.post<any>(this._logUrl,user)
                       .pipe(catchError(this.errorHandler));
   }
+
+  getEmployeeDetails(){
+    return this._http.get<any>(this._getEmpUrl)
+                      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error : HttpErrorResponse){
     return throwError(error.message || "Service Error!");
   }
@@ -36,7 +43,7 @@ export class AuthService {
     sessionStorage.removeItem('token');
     alert("You have Successfully LoggedOut!")
     this._router.navigate(["/events"]);
-    
-
   }
+
+
 }

@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center pt-5 mx">
+    <div>
+        <h3><u>Employees</u></h3>
+        <ul *ngFor="let item of empDetails">
+                <li>{{item.name}}</li>
+    
+            </ul>
+    </div>
+    <div>
+        
+    </div>
+</div>
+<app-employee-list (childEvent)="empDetails = $event" ></app-employee-list>

@@ -1,0 +1,29 @@
+<div class = "container container-fluid pt-5 mx">
+<mat-accordion>
+    <mat-expansion-panel *ngFor = "let car of cars" [ngClass] = "
+    {
+        'color-blue' : car.name === 'MG Hector',
+        'color-white':car.name === 'Ford',
+        'color-grey':car.name === 'Kia',
+        'color-red':car.name === 'BMW',
+        'color-silver':car.name === 'Jaguar',
+        'color-purple':car.name === 'Jeep'
+    }
+    ">
+        <mat-expansion-panel-header>
+             <mat-panel-title  class="txt-col">
+                 Name: {{car.name}}
+              </mat-panel-title>
+              <mat-panel-description class="txtd-col">
+                 Color: {{car.color}}.
+              </mat-panel-description>
+         </mat-expansion-panel-header>
+        <p>Description: {{car.des}}.</p>
+        <mat-action-row>
+            <button mat-flat-button class="btn">Book</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
+</div>
+
+      

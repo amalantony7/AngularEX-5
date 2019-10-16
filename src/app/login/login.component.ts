@@ -39,7 +39,8 @@ export class LoginComponent implements OnInit {
                             this._router.navigate(["/special"]);
                           },
                           error => {console.log(error)
-                          alert("Login Failed!");}
+                          alert("Login Failed!");
+                          this._router.navigate(["/special"])}
                         );
   }
 

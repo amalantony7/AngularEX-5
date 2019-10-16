@@ -25,6 +25,7 @@ export class SpecialComponent implements OnInit {
                 this._router.navigate(["/login"]);
              }
            }
+           this._router.navigate(["/login"]);
          }
        )  
   }

@@ -1,0 +1,15 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let event of events">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{event.username}}</h5>
+          <p class="card-text">{{event.place}}</p>
+          <p class="card-text">{{event.phone}}</p>
+          <button (click) = "sendData()" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="card-footer text-muted">
+            {{event.email}} 
+        </div>
+      </div>
+    </div>
+  </div>
