@@ -6,6 +6,8 @@ import { AuthService} from './auth.service';
 import { EventService} from './event.service';
 import { HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { ImageCropperModule} from 'ngx-image-cropper';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +41,8 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ImageCropperModule
   ],
   providers: [AuthService, AuthGuard, EventService, {
     provide : HTTP_INTERCEPTORS,

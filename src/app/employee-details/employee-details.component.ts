@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeeDetailsComponent implements OnInit {
 
   public empDetails = [];
+  
 
   constructor() { }
 

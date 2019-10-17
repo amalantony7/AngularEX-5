@@ -1,0 +1,22 @@
+.card{
+    width : 400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+}
+
+mat-form-field {
+    width: 100%;
+  }
+
+  .container{
+    position: relative;
+    margin-top:5%;
+    margin-right:auto;  
+    margin-left:auto;
+  }
+  
+  .btn{
+    width: 100%;
+    border-radius: 25px;
+  }

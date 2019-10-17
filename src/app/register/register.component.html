@@ -1,14 +1,15 @@
 <div class="row pt-5">
     <div class="col-md-6 mx-auto">
-        <div class="card rounded-0">
+        <div class="card rounded-1">
             <div class="card-header">
-                <h3 class="mb-0">Register</h3>
+                <h3 class="mb-0" align="center">Register</h3>
             </div>
             <div class="card-body">
-                <form class="form" [formGroup] = "registerForm" (ngSubmit) = "onRegister(registerForm)" novalidate>
+                <form class="form" [formGroup] = "registerForm" (ngSubmit) = "onRegister(registerForm)" novalidate>                
                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" [class.is-invalid] = "userName.invalid && userName.touched" pattern ="{{nameRegex}}" formControlName="username" placeholder="----User Name----"  class="form-control rounded-0"> 
+                        <mat-form-field>
+                            <input type="text" matTooltip="Employee Name." matInput placeholder="Name" [class.is-invalid] = "userName.invalid && userName.touched" pattern ="{{nameRegex}}" formControlName="username">
+                        </mat-form-field>
                         <div *ngIf="userName.invalid && userName.touched">
                             <small class="text-danger" *ngIf="userName.errors?.required">This field is required!</small>
                             <p><small class="text-danger" *ngIf="userName.errors?.pattern">Username should only contain characters!</small></p>
@@ -17,25 +18,60 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Place</label>
-                        <input type="text" [class.is-invalid]="place.invalid && place.touched" pattern="{{nameRegex}}" class="form-control rounded-0" formControlName="place" placeholder="----Place----">
-                        <div *ngIf="place.invalid && place.touched">
-                            <small class="text-danger" *ngIf="place.errors?.required">This field is required!</small>
-                            <p><small class="text-danger" *ngIf="place.errors?.pattern">Enter valid place</small></p>
+                            <mat-form-field>
+                                <textarea matInput matTooltip="Employee Address." placeholder="Address" [class.is-invalid] = "address.invalid && address.touched" formControlName="address"></textarea>
+                            </mat-form-field>
+                            <div *ngIf="address.invalid && address.touched">
+                                <small class="text-danger" *ngIf="address.errors?.required">This field is required!</small>
+                                <p><small class="text-danger" *ngIf="address.errors?.maxlength">Address should only be 50 characters long!</small></p>
+                                <p><small class="text-danger" *ngIf="address.errors?.minlength">Address should contain atleast 10 charcters!</small></p>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type ="file" matTooltip="Employee Profile Picture." class="inputfile" (change)="fileChangeEvent($event)" [class.is-invalid] = "proPic.invalid && proPic.touched" formControlName = "proPic" placeholder="Upload">
+                        </div>
+                        <div>
+                            <image-cropper
+                                [imageChangedEvent]="imageChangedEvent"
+                                [maintainAspectRatio]="true"
+                                [aspectRatio]="4 / 3"
+                                [resizeToWidth]="128"
+                                format="png"
+                                (imageCropped)="imageCropped($event)"
+                                (imageLoaded)="imageLoaded()"
+                                (cropperReady)="cropperReady()"
+                                (loadImageFailed)="loadImageFailed()"
+                            ></image-cropper>
+                        </div>
+                        <mat-icon class = "float-right" (click) = "closeCropper()" aria-hidden="false" aria-label="Example home icon">cloud_upload</mat-icon>
+                        <div *ngIf="proPic.invalid && proPic.touched">
+                            <small class="text-danger" *ngIf="proPic.errors?.required">This field is required!</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="email" [class.is-invalid]="email.invalid && email.touched" pattern="{{emailRegex}}" formControlName="email" placeholder="----Email----" class="form-control rounded-0">
+                        <mat-form-field>
+                            <input matInput matTooltip="Employee Date of Birth." [class.is-invalid] = "dob.invalid && dob.touched" [matDatepicker]="picker" formControlName="dob" placeholder="Choose a date" [max]="maxDate" [min]="minDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf ="dob.invalid && dob.touched">
+                            <small class="text-danger" *ngIf="dob.errors?.required">This field is required!</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <input type="email" matTooltip="Employee Email." placeholder="Email" matInput [class.is-invalid]="email.invalid && email.touched" pattern="{{emailRegex}}" formControlName="email">
+                        </mat-form-field>
                         <div *ngIf="email.invalid && email.touched">
-                            <small class="text-danger" *ngIf="email.required">This field is required!</small> 
-                            <p><small class="text-danger" *ngIf="email.errors?.pattern">Enter valid Email!</small> </p>
-                    
+                                <small class="text-danger" *ngIf="email.errors?.required">This field is required!</small> 
+                                <p><small class="text-danger" *ngIf="email.errors?.pattern || email.errors?.maxlength || email.errors?.minlength">Enter valid Email!</small> </p>
                         </div>
                     </div>    
                     <div class="form-group">
-                        <label for="">Password</label>
-                        <input type="password" [class.is-invalid] = "password.invalid && password.touched" formControlName="password" placeholder="----Password----" class="form-control rounded-0">
+                        <mat-form-field>
+                            <input matInput matTooltip="Employee password." placeholder="Password" type="password" [class.is-invalid] = "password.invalid && password.touched" formControlName="password">
+                        </mat-form-field>
                         <div *ngIf="password.invalid && password.touched">
                             <small class="text-danger" *ngIf="password.errors?.required">This field is required!</small>
                             <p><small class="text-danger" *ngIf="password.errors?.maxlength">Password should only be 10 characters long!</small></p>
@@ -43,16 +79,43 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Phone</label>
-                        <input type="tel" [class.is-invalid] = "phone.invalid && phone.touched" pattern="{{phoneRegex}}" formControlName="phone" placeholder="----Phone---- " class="form-control rounded-0">
+                        <mat-form-field>
+                            <input type="tel" matTooltip="Employee phone." placeholder="Phone" matInput [class.is-invalid] = "phone.invalid && phone.touched" pattern="{{phoneRegex}}" formControlName="phone">
+                        </mat-form-field>
                         <div *ngIf="phone.invalid && phone.touched">
-                                <small class="text-danger" *ngIf="phone.errors?.required">This field is required!</small>
-                                <small class="text-danger" *ngIf="phone.errors?.maxlength || phone.errors?.pattern">Enter valid Contact Number!</small>
+                            <small class="text-danger" *ngIf="phone.errors?.required">This field is required!</small>
+                             <small class="text-danger" *ngIf="phone.errors?.maxlength || phone.errors?.pattern">Enter valid Contact Number!</small>
                         </div>
                     </div>
+                    <div class="form-group">
+                            <mat-form-field>
+                                <input matInput matTooltip="Employee Department." [class.is-invalid] = "empDep.invalid && empDep.touched" formControlName="empDep" [matAutocomplete]="auto" placeholder="Department">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of options" [value]="option">
+                                          {{option}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <div *ngIf="empDep.invalid && empDep.touched">
+                                <small class="text-danger" *ngIf="empDep.errors?.required">This field is required!</small>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                            <mat-form-field>
+                                <input type="text" matInput matTooltip="Employee place." [class.is-invalid]="place.invalid && place.touched" pattern="{{nameRegex}}" formControlName="place" placeholder="Place">
+                            </mat-form-field>    
+                            <div *ngIf="place.invalid && place.touched">
+                                <small class="text-danger" *ngIf="place.errors?.required">This field is required!</small>
+                                <p><small class="text-danger" *ngIf="place.errors?.pattern">Enter valid place</small></p>
+                            </div>
+                        </div>
                     <button type="submit"  [disabled] ="!registerForm.valid" class="btn btn-primary float-right">Register</button>
                 </form>
             </div>
         </div>
     </div>
+    <div>
+        <img class="rounded d-flex float-right img-fluid img-thumbnail" [src]="croppedImage" alt="">
+     </div>
 </div>
+

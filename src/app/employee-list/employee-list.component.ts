@@ -27,4 +27,5 @@ export class EmployeeListComponent implements OnInit {
   sendData(){
     this.childEvent.emit(this.events);
   }
+
 }

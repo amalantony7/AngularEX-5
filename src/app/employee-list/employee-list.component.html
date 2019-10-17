@@ -5,11 +5,14 @@
           <h5 class="card-title">{{event.username}}</h5>
           <p class="card-text">{{event.place}}</p>
           <p class="card-text">{{event.phone}}</p>
-          <button (click) = "sendData()" class="btn btn-primary">Submit</button>
+          <p class="card-text">{{event.email}}</p>
         </div>
         <div class="card-footer text-muted">
-            {{event.email}} 
+            <a  class="btn btn-success">Buy Tickets</a> 
         </div>
       </div>
+    </div>
+    <div class="container">
+      <button (click) = "sendData()" class="btn btn-lg btn-block btn-primary">View Details</button>
     </div>
   </div>

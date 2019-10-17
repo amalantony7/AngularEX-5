@@ -1,13 +1,14 @@
 <div class="d-flex justify-content-center pt-5 mx">
     <div>
-        <h3><u>Employees</u></h3>
-        <ul *ngFor="let item of empDetails">
-                <li>{{item.name}}</li>
-    
-            </ul>
+        <mat-list>
+            <h5 mat-header>Employees</h5>
+            <mat-list-item *ngFor="let item of empDetails">
+              <mat-icon mat-list-icon>verified_user</mat-icon>
+              <h5 mat-line>{{item.username}}</h5>
+              <small mat-line> {{item.phone}} </small>
+            </mat-list-item>
+        </mat-list>
     </div>
-    <div>
-        
-    </div>
+
 </div>
 <app-employee-list (childEvent)="empDetails = $event" ></app-employee-list>
