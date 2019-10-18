@@ -1,18 +1,18 @@
-<div class="row mt-5">
+
+<div class ="container-fluid">
+  <div class="row mt-5">
     <div class="col-md-4 mb-3" *ngFor="let event of events">
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">{{event.username}}</h5>
-          <p class="card-text">{{event.place}}</p>
-          <p class="card-text">{{event.phone}}</p>
+          <small class="card-text">{{event.phone}}</small>
           <p class="card-text">{{event.email}}</p>
         </div>
         <div class="card-footer text-muted">
-            <a  class="btn btn-success">Buy Tickets</a> 
+            <button (click) = "searchEmploye(event)"  class="btn btn-success">View Profile</button> 
         </div>
       </div>
     </div>
-    <div class="container">
-      <button (click) = "sendData()" class="btn btn-lg btn-block btn-primary">View Details</button>
-    </div>
   </div>
+  
+</div>

@@ -18,6 +18,7 @@ const routes: Routes = [
   {path : "events" , component : EventsComponent},
   {path : "cars", component : CarsComponent},
   {path : "employee" , component : EmployeeDetailsComponent},
+  {path : "employee/:email", component : EmployeeDetailsComponent},
   {path : "special" , component : SpecialComponent, canActivate : [AuthGuard]},
   {path : "**" , component: PageNotFoundComponent}
 
