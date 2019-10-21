@@ -23,6 +23,7 @@ import { MaterialModule } from './material/material.module';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ViewEmployeeComponent } from './view-employee/view-employee.component';
     CarsComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
-    ViewEmployeeComponent
+    ViewEmployeeComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

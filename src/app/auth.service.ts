@@ -13,6 +13,7 @@ export class AuthService {
   private _logUrl = "http://localhost:3000/api/login";
   private _getEmpUrl= "http://localhost:3000/api/employees";
   private _srchEmp = "http://localhost:3000/api/employee";
+  private _delUrl = "http://localhost:3000/api/delete";
   constructor(private _http : HttpClient, private _router : Router) { }
 
   registerData(user){
@@ -27,6 +28,12 @@ export class AuthService {
 
   getEmployeeDetails(){
     return this._http.get<any>(this._getEmpUrl)
+                      .pipe(catchError(this.errorHandler));
+  }
+
+  deleteEmployee(email : string){
+    const params = new HttpParams().set('email',email);
+    return this._http.delete<any>(this._delUrl, {params : params})
                       .pipe(catchError(this.errorHandler));
   }
 

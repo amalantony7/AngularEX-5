@@ -11,12 +11,12 @@
 
 </div> -->
 
-<div class="container">
+<div class="container" align=center>
         <div class="row profile">
             <div class="col-md-3">
-                <div class="profile-sidebar" *ngFor="let item of empDetails">
+                <div class="profile-sidebar border border-info rounded" *ngFor="let item of empDetails">
                     <!-- SIDEBAR USERPIC -->
-                    <div class="rounded d-flex justify-content-center ">
+                    <div class="rounded d-flex justify-content-center  ">
                         <img src="{{item.image}}" class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
@@ -32,10 +32,13 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                            <button mat-mini-fab color="primary" >
+                            <button matTooltip= "Verified Employee" mat-mini-fab color="primary" >
                                 <mat-icon>verified_user</mat-icon>
                             </button>
-                            <button mat-mini-fab color="warn">
+                            <button matTooltip= "Update Employee" (click) = "updateEmployee(item)" mat-mini-fab color="primary" >
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button matTooltip= "Delete Employee" (click) = "deleteEmp(item)" mat-mini-fab color="warn">
                                 <mat-icon>delete</mat-icon>
                             </button>
                     </div>
@@ -51,11 +54,17 @@
                                             <mat-icon mat-list-icon>phone</mat-icon>
                                             <h5 mat-line>{{item.phone}}</h5>
                                     </mat-list-item>
+                                    <mat-list-item class="li">
+                                        <mat-icon mat-list-icon>mail</mat-icon>
+                                        <h5 mat-line>{{item.email}}</h5>
+                                    </mat-list-item>
                             </mat-list>
                     </div>
+                    
                     <!-- END MENU -->
                 </div>
             </div>
+            <app-edit-employee *ngIf="isShow"></app-edit-employee>
         </div>
     </div>
 

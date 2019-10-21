@@ -26,9 +26,7 @@ export class EmployeeListComponent implements OnInit {
 
   @Output() public childEvent = new EventEmitter();
 
-  sendData(){
-    
-  }
+
 
   searchEmploye(empDet){
 

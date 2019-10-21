@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../auth.service'
-import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
- 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-edit-employee',
+  templateUrl: './edit-employee.component.html',
+  styleUrls: ['./edit-employee.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit {
 
   registerForm : FormGroup;
   public phoneRegex = "^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$";
@@ -26,12 +25,13 @@ export class RegisterComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
 
-  constructor(private _auth : AuthService,
-              private fb : FormBuilder,
-              private  _router : Router,
-              private _snackBar : MatSnackBar) { }
+  constructor(private _authSer : AuthService ,
+              private _router : Router , 
+              private _snackbar  :MatSnackBar,
+              private _fb  : FormBuilder) { }
 
-  get userName(){
+
+ get userName(){
     return this.registerForm.get('username');
   }
 
@@ -76,17 +76,16 @@ export class RegisterComponent implements OnInit {
     // cropper ready
   }
   loadImageFailed() {
-    this._snackBar.open(`wrong filetype selected (only png, gif and jpg are allowed)`, '' , { duration : 2000});
+    this._snackbar.open(`wrong filetype selected (only png, gif and jpg are allowed)`, '' , { duration : 2000});
   }
 
   closeCropper(){
     this.fileChangeEvent("destroy");
-  }
-
+  }             
 
   ngOnInit() {
 
-    this.registerForm = this.fb.group({
+    this.registerForm = this._fb.group({
       username : ['',[Validators.pattern,Validators.required,Validators.minLength(2),Validators.maxLength(20)]],
       proPic : ['', [Validators.required]],
       address : ['',[Validators.required,Validators.minLength(10),Validators.maxLength(50)]],
@@ -97,25 +96,7 @@ export class RegisterComponent implements OnInit {
       empDep : ['',[Validators.required]],
       phone : ['',[Validators.required,Validators.pattern,Validators.maxLength(10)]]
     });
-    
-  }
 
-  onRegister(myForm : NgForm){
-    const data = this.registerForm.value;
-    data.image=this.croppedImage; //to add value of an element from outside form.
-    this._auth.registerData(data)
-                        .subscribe(
-                          res => {
-                            localStorage.setItem('token', res.token);
-                            this._snackBar.open("Registration Sccessfull!" ,'Dismiss', {duration : 2000});
-                            myForm.reset();
-                            this._router.navigate(["/events"]);
-                          },
-                          error => {
-                            console.log(error);
-                            this._snackBar.open("Registration UnSccessfull!" ,'', {duration : 2000});
-                          }
-                        );
   }
 
 }
