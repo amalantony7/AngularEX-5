@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './auth.guard';
 import { CarsComponent } from './cars/cars.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { TableEmpComponent } from './table-emp/table-emp.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path : "employee" , component : EmployeeDetailsComponent},
   {path : "employee/:email", component : EmployeeDetailsComponent},
   {path : "special" , component : SpecialComponent, canActivate : [AuthGuard]},
+  {path : "table" , component : TableEmpComponent},
   {path : "**" , component: PageNotFoundComponent}
 
 ];
