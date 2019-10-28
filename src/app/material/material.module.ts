@@ -63,7 +63,9 @@ MatSnackBarModule,
 MatTableModule,
 MatListModule,
 MatSelectModule,
-MatAutocompleteModule
+MatAutocompleteModule,
+MatSortModule,
+MatCheckboxModule
 ]
 
 

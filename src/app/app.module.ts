@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule} from '@angular/forms'
+import { ReactiveFormsModule, FormsModule} from '@angular/forms'
 import { HttpClientModule} from '@angular/common/http';
 import { AuthService} from './auth.service';
 import { EventService} from './event.service';
@@ -48,7 +48,8 @@ import { TableEmpComponent } from './table-emp/table-emp.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ImageCropperModule
+    ImageCropperModule,
+    FormsModule
   ],
   providers: [AuthService, AuthGuard, EventService, {
     provide : HTTP_INTERCEPTORS,

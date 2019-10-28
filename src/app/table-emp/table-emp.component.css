@@ -1,3 +1,25 @@
 table {
     width: 100%;
   }
+  /* .example-container {
+    height: 400px;
+    overflow: auto;
+  } */
+
+  .mat-footer-row {
+    font-weight: bold;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }  
+
+  td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    padding: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: none;
+    margin-top: 10px;
+}
+.mat-column-select {
+  overflow: initial;
+}
